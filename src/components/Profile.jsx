@@ -3,8 +3,8 @@ export const Profile = ({ size, user, color }) => {
   return (
     <div className="flex gap-3 items-center">
       <img
-        src="/temp-profile.jpg"
-        // src={article.user.profile_image}
+        // src="/temp-profile.jpg"
+        src={user.profile_image}
         width={size}
         height={size}
         alt="profile image"

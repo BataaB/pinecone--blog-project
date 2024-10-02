@@ -33,7 +33,7 @@ export const BlogCard = ({ article, showUser }) => {
         </div>
         <div className="flex gap-5 items-center">
           {showUser && (
-            <Profile size={36} username={article.user} color="#97989F" />
+            <Profile size={36} user={article.user} color="#97989F" />
           )}
           <FormatDate date={article.published_at} color="#97989F" />
         </div>

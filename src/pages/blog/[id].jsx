@@ -36,7 +36,12 @@ const SinglePost = () => {
             <FormatDate date={article.published_at} color="#696A75" />
           </div>
         </div>
-        <img src="/temp.jpg" alt="cover image" className="w-full rounded-xl" />
+        <img
+          // src="/temp.jpg"
+          src={article.social_image}
+          alt="cover image"
+          className="w-full rounded-xl"
+        />
         <div dangerouslySetInnerHTML={{ __html: article.body_html }}></div>
       </div>
       <Footer />
