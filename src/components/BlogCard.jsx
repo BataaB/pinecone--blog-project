@@ -2,6 +2,7 @@ import Image from "next/image";
 import BlogCardTag from "./BlogCardTag";
 import { FormatDate, Profile } from ".";
 import { useRouter } from "next/router";
+import moment from "moment";
 
 export const BlogCard = ({ article, showUser }) => {
   const router = useRouter();
@@ -9,7 +10,10 @@ export const BlogCard = ({ article, showUser }) => {
     <div
       className=" p-4 flex flex-col gap-4 rounded-xl border-2 border-[#E8E8EA] w-[392px] cursor-pointer
                  hover:bg-[#E8E8EA]"
-      onClick={() => router.push(`/blog/${article.id}`)}
+      onClick={() => {
+        router.push(`/blog/${article.id}`);
+        // router.push(`/blog/single-post?selectedId=${article.id}`);
+      }}
     >
       <img
         // src={"/temp.jpg"}
@@ -35,7 +39,9 @@ export const BlogCard = ({ article, showUser }) => {
           {showUser && (
             <Profile size={36} user={article.user} color="#97989F" />
           )}
-          <FormatDate date={article.published_at} color="#97989F" />
+          <span className="text-[#696A75]">
+            {moment(article.published_at, "YYYYMMDD").format("LL")}
+          </span>
         </div>
       </div>
     </div>

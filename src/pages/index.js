@@ -58,11 +58,22 @@ const Home = () => {
   const moveSlide = (type) => {
     let newIndex;
     if (type == "back") {
+      // if (carouselIndex == 0) {
+      //   newIndex == carouselArticles.length - 1;
+      // } else {
+      //   newIndex = carouselIndex - 1;
+      // }
       newIndex = carouselIndex - 1;
     } else {
+      // if (carouselIndex == carouselArticles.length - 1) {
+      //   newIndex = 0;
+      // } else {
+      //   newIndex = carouselIndex + 1;
+      // }
       newIndex = carouselIndex + 1;
     }
-    setCarouselIndex(newIndex % 4);
+    setCarouselIndex((newIndex + carouselArticles.length) % 4);
+    // setCarouselIndex(newIndex);
   };
 
   useEffect(() => {
@@ -87,14 +98,14 @@ const Home = () => {
             <div className="flex justify-end gap-2 mt-3">
               <button
                 onClick={() => moveSlide("back")}
-                disabled={carouselIndex == 0}
+                // disabled={carouselIndex == 0}
                 className="disabled:bg-[#696A75] rounded-[6px]"
               >
                 <SliderButtonLogos type={"back"} />
               </button>
               <button
                 onClick={() => moveSlide("forward")}
-                disabled={carouselIndex == carouselArticles.length - 1}
+                // disabled={carouselIndex == carouselArticles.length - 1}
                 className="disabled:bg-[#696A75] rounded-[6px]"
               >
                 <SliderButtonLogos type={"forward"} />

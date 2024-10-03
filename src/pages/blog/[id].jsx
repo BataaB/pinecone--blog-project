@@ -1,6 +1,6 @@
-import { Footer, FormatDate, Header, Profile } from "@/components";
+import { Footer, Header, Profile } from "@/components";
 import Loading from "@/components/Loading";
-import Link from "next/link";
+import moment from "moment";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -33,7 +33,9 @@ const SinglePost = () => {
           </h1>
           <div className="flex items-center gap-6">
             <Profile size={28} user={article.user} color="#696A75" />
-            <FormatDate date={article.published_at} color="#696A75" />
+            <span className="text-[#696A75]">
+              {moment(article.published_at, "YYYYMMDD").format("LL")}
+            </span>
           </div>
         </div>
         <img
@@ -42,7 +44,23 @@ const SinglePost = () => {
           alt="cover image"
           className="w-full rounded-xl"
         />
-        <div dangerouslySetInnerHTML={{ __html: article.body_html }}></div>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: String(article.body_html)
+              .replaceAll(
+                "<p",
+                "<p style='color: #3B3C4A; font-size: 1.25rem; margin-block: 1rem;' "
+              )
+              .replaceAll(
+                "<h2>",
+                "<h2 style='color: #181A2A; font-size: 1.5rem; font-weight: bold; margin-block: 2rem 1rem;' "
+              )
+              .replaceAll(
+                "<h3>",
+                "<h3 style='color: #181A2A; font-size: 1.4rem; font-weight: 600; margin-block: 1.5rem 1rem;' "
+              ),
+          }}
+        ></div>
       </div>
       <Footer />
     </div>

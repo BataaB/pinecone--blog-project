@@ -1,0 +1,383 @@
+<p>
+  Large language models (LLMs) like
+  <a
+    href="https://ai.google.dev/gemini-api"
+    target="_blank"
+    rel="noopener noreferrer"
+    >Gemini</a
+  >
+  can generate human-quality text, translate languages, and answer questions in
+  an informative way. But writing applications that use these LLMs effectively
+  can be tricky, and models all have their own distinct APIs and supported
+  features. That’s where
+  <a href="https://www.langchain.com/" target="_blank" rel="noopener noreferrer"
+    >LangChain</a
+  >
+  comes in.
+</p>
+\n\n
+<h2>
+  \n <a name="what-is-langchain" href="#what-is-langchain">\n </a>\n What is
+  LangChain?\n
+</h2>
+\n\n
+<p>
+  LangChain is an open source framework designed to help developers build
+  applications that use LLMs. It provides a standardized interface and set of
+  tools for interacting with a variety of different LLMs, making it easier to
+  incorporate them into your applications. Think of it like a universal adapter
+  that lets you plug in any LLM and start using it with a consistent set of
+  commands. This simplifies development by abstracting away the complexities of
+  individual LLM APIs and allowing you to focus on building your application
+  logic.
+</p>
+\n\n
+<p>With LangChain, you can:</p>
+\n\n
+<ul>
+  \n
+  <li>
+    \n<strong>Use different language models</strong> by easily switching between
+    multiple models without rewriting your application logic.
+  </li>
+  \n
+  <li>
+    \n<strong>Connect to various data sources</strong> such as documents and
+    databases to provide context and grounding to the LLM responses.
+  </li>
+  \n
+  <li>
+    \n<strong>Create complex flows</strong> by chaining together multiple
+    pre-built components.
+  </li>
+  \n
+  <li>
+    \n<strong>Engage in dynamic conversations</strong> by building chatbots that
+    can remember past interactions and user preferences.
+  </li>
+  \n
+  <li>
+    \n<strong>Access and manage external knowledge</strong> by integrating with
+    APIs and other sources of real-time information.
+  </li>
+  \n
+</ul>
+\n\n
+<h2>
+  \n
+  <a name="why-would-you-use-langchain" href="#why-would-you-use-langchain"
+    >\n </a
+  >\n Why would you use LangChain?\n
+</h2>
+\n\n
+<p>
+  Imagine you're building a chatbot that needs to answer questions based on your
+  company's internal documents. You have to write custom code to load those
+  documents, format them for the LLM, send the API request, parse the response,
+  and potentially even handle errors. Now, imagine needing to do this across
+  multiple projects with different LLMs and data sources. That's a lot of
+  repetitive and complex code!
+</p>
+\n\n
+<p>
+  LangChain simplifies the development process of LLM-powered applications by
+  abstracting away shared concepts between models, by providing:
+</p>
+\n\n
+<ul>
+  \n
+  <li>
+    \n<strong>Modularity</strong> by breaking down your application into
+    reusable components.
+  </li>
+  \n
+  <li>
+    \n<strong>Flexibility</strong> by being able to easily swap out models and
+    components.
+  </li>
+  \n
+  <li>
+    \n<strong>Extensibility</strong> by allowing you to customize and extend the
+    framework based on your needs.
+  </li>
+  \n
+</ul>
+\n\n
+<p>
+  This allows you to focus on your application logic instead of reinventing the
+  wheel.
+</p>
+\n\n
+<h2>
+  \n
+  <a name="how-do-you-use-langchain" href="#how-do-you-use-langchain">\n </a>\n
+  How do you use LangChain?\n
+</h2>
+\n\n
+<p>
+  Getting started is simple! LangChain is available as a package for both
+  <a
+    href="https://python.langchain.com/docs/introduction/"
+    target="_blank"
+    rel="noopener noreferrer"
+    >Python</a
+  >
+  and
+  <a
+    href="https://js.langchain.com/docs/introduction/"
+    target="_blank"
+    rel="noopener noreferrer"
+    >JavaScript</a
+  >, and offers extensive documentation and resources. In addition, the
+  LangChain developer community is vast and lots of bindings have been created
+  for other languages, such as
+  <a
+    href="https://docs.langchain4j.dev/"
+    target="_blank"
+    rel="noopener noreferrer"
+    >LangChain4j</a
+  >
+  for Java. To see which LLM models (and related features) are supported by
+  LangChain, you can take a look at the
+  <a
+    href="https://python.langchain.com/docs/integrations/llms/"
+    target="_blank"
+    rel="noopener noreferrer"
+    >official tables for LLM models</a
+  >
+  and for
+  <a
+    href="https://python.langchain.com/docs/integrations/chat/"
+    target="_blank"
+    rel="noopener noreferrer"
+    >chat models</a
+  >.
+</p>
+\n\n
+<p>
+  Let’s take a look at how quickly you can get a LangChain application running
+  in Python. In this example we’ll use the latest Gemini Pro model, but the
+  steps are similar for any model you choose.
+</p>
+\n\n
+<p>
+  First, you install the required packages. In our case, the core LangChain
+  package as well as the LangChain Google AI package.<br />\n
+</p>
+\n\n
+<div class="highlight js-code-highlight">
+  \n
+  <pre
+    class="highlight shell"
+  ><code>pip <span class="nb">install </span>langchain langchain-google-genai\n</code></pre>
+  \n
+  <div class="highlight__panel js-actions-panel">
+    \n
+    <div class="highlight__panel-action js-fullscreen-code-action">
+      \n
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20px"
+        height="20px"
+        viewbox="0 0 24 24"
+        class="highlight-action crayons-icon highlight-action--fullscreen-on"
+      >
+        <title>Enter fullscreen mode</title>
+        \n
+        <path
+          d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"
+        ></path>
+        \n</svg
+      >\n\n
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20px"
+        height="20px"
+        viewbox="0 0 24 24"
+        class="highlight-action crayons-icon highlight-action--fullscreen-off"
+      >
+        <title>Exit fullscreen mode</title>
+        \n
+        <path
+          d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"
+        ></path>
+        \n</svg
+      >\n\n
+    </div>
+    \n
+  </div>
+  \n
+</div>
+\n\n\n\n
+<p>
+  Then set your Gemini API key, which you can generate following
+  <a
+    href="https://ai.google.dev/gemini-api/docs/api-key"
+    target="_blank"
+    rel="noopener noreferrer"
+    >these instructions</a
+  >.<br />\n
+</p>
+\n\n
+<div class="highlight js-code-highlight">
+  \n
+  <pre
+    class="highlight shell"
+  ><code><span class="nb">export </span><span class="nv">GOOGLE_API_KEY</span><span class="o">=</span>your-api-key\n</code></pre>
+  \n
+  <div class="highlight__panel js-actions-panel">
+    \n
+    <div class="highlight__panel-action js-fullscreen-code-action">
+      \n
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20px"
+        height="20px"
+        viewbox="0 0 24 24"
+        class="highlight-action crayons-icon highlight-action--fullscreen-on"
+      >
+        <title>Enter fullscreen mode</title>
+        \n
+        <path
+          d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"
+        ></path>
+        \n</svg
+      >\n\n
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20px"
+        height="20px"
+        viewbox="0 0 24 24"
+        class="highlight-action crayons-icon highlight-action--fullscreen-off"
+      >
+        <title>Exit fullscreen mode</title>
+        \n
+        <path
+          d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"
+        ></path>
+        \n</svg
+      >\n\n
+    </div>
+    \n
+  </div>
+  \n
+</div>
+\n\n\n\n
+<p>
+  And with only a few lines of code, you have a working Q&amp;A application
+  powered by both templating and chaining features!<br />\n
+</p>
+\n\n
+<div class="highlight js-code-highlight">
+  \n
+  <pre
+    class="highlight python"
+  ><code><span class="kn">from</span> <span class="n">langchain_google_genai</span> <span class="kn">import</span> <span class="n">ChatGoogleGenerativeAI</span>\n<span class="kn">from</span> <span class="n">langchain_core.prompts</span> <span class="kn">import</span> <span class="n">ChatPromptTemplate</span>\n\n<span class="n">llm</span> <span class="o">=</span> <span class="nc">ChatGoogleGenerativeAI</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="sh">"</span><span class="s">gemini-1.5-pro</span><span class="sh">"</span><span class="p">)</span>\n\n<span class="n">prompt</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="p">.</span><span class="nf">from_messages</span><span class="p">(</span>\n    <span class="p">[</span>\n        <span class="p">(</span>\n            <span class="sh">"</span><span class="s">system</span><span class="sh">"</span><span class="p">,</span>\n            <span class="sh">"</span><span class="s">You are a helpful assistant that creates poems in {input_language} containg {line_count} lines about a given topic.</span><span class="sh">"</span><span class="p">,</span>\n        <span class="p">),</span>\n        <span class="p">(</span><span class="sh">"</span><span class="s">human</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">{input}</span><span class="sh">"</span><span class="p">),</span>\n    <span class="p">]</span>\n<span class="p">)</span>\n\n<span class="n">chain</span> <span class="o">=</span> <span class="n">prompt</span> <span class="o">|</span> <span class="n">llm</span>\n\n<span class="n">response</span> <span class="o">=</span> <span class="n">chain</span><span class="p">.</span><span class="nf">invoke</span><span class="p">(</span>\n    <span class="p">{</span>\n        <span class="sh">"</span><span class="s">input_language</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">French</span><span class="sh">"</span><span class="p">,</span>\n        <span class="sh">"</span><span class="s">line_count</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">4</span><span class="sh">"</span><span class="p">,</span>\n        <span class="sh">"</span><span class="s">input</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Google Cloud</span><span class="sh">"</span><span class="p">,</span>\n    <span class="p">}</span>\n<span class="p">)</span>\n\n<span class="nf">print </span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">content</span><span class="p">)</span>\n</code></pre>
+  \n
+  <div class="highlight__panel js-actions-panel">
+    \n
+    <div class="highlight__panel-action js-fullscreen-code-action">
+      \n
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20px"
+        height="20px"
+        viewbox="0 0 24 24"
+        class="highlight-action crayons-icon highlight-action--fullscreen-on"
+      >
+        <title>Enter fullscreen mode</title>
+        \n
+        <path
+          d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"
+        ></path>
+        \n</svg
+      >\n\n
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20px"
+        height="20px"
+        viewbox="0 0 24 24"
+        class="highlight-action crayons-icon highlight-action--fullscreen-off"
+      >
+        <title>Exit fullscreen mode</title>
+        \n
+        <path
+          d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"
+        ></path>
+        \n</svg
+      >\n\n
+    </div>
+    \n
+  </div>
+  \n
+</div>
+\n\n\n\n
+<h2>
+  \n
+  <a name="try-it-out-on-google-cloud" href="#try-it-out-on-google-cloud">\n </a
+  >\n Try it out on Google Cloud!\n
+</h2>
+\n\n
+<p>
+  <a href="https://cloud.google.com/" target="_blank" rel="noopener noreferrer"
+    >Google Cloud</a
+  >
+  is a great platform for developing and running enterprise-ready LangChain
+  applications. With powerful compute resources, seamless integration with other
+  Google Cloud services, and an extensive collection of pre-hosted LLMs to
+  choose from in
+  <a
+    href="https://cloud.google.com/model-garden"
+    target="_blank"
+    rel="noopener noreferrer"
+    >Model Garden on Vertex AI</a
+  >, you have everything you need to build and deploy your AI-powered
+  applications.
+</p>
+\n\n
+<p>Explore the following resources to get started:</p>
+\n\n
+<ul>
+  \n
+  <li>
+    <a
+      href="https://cloud.google.com/vertex-ai/generative-ai/docs/reasoning-engine/overview"
+      target="_blank"
+      rel="noopener noreferrer"
+      >Documentation - LangChain on Vertex AI</a
+    >
+  </li>
+  \n
+  <li>
+    <a
+      href="https://cloud.google.com/blog/products/databases/build-rag-applications-with-langchain-and-google-cloud"
+      target="_blank"
+      rel="noopener noreferrer"
+      >Article - Build supercharged gen AI applications with LangChain and
+      Google Cloud databases</a
+    >
+  </li>
+  \n
+  <li>
+    <a
+      href="https://www.youtube.com/watch?v=l7tNx52bnsc"
+      target="_blank"
+      rel="noopener noreferrer"
+      >Video - Building generative AI apps on Google Cloud with LangChain</a
+    >
+  </li>
+  \n
+</ul>
+\n\n
+<p>
+  In a later post, I will take a look at how you can use LangChain to connect to
+  a local Gemma instance, all running in a
+  <a
+    href="https://cloud.google.com/kubernetes-engine/"
+    target="_blank"
+    rel="noopener noreferrer"
+    >Google Kubernetes Engine (GKE)</a
+  >
+  cluster.
+</p>
+\n\n

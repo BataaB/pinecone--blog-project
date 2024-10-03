@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { FormatDate, TrendingCardTag } from ".";
+import moment from "moment";
 
 export const CarouselCard = ({ article }) => {
   const router = useRouter();
@@ -37,7 +38,9 @@ export const CarouselCard = ({ article }) => {
             {article.title}
           </h1>
         </div>
-        {<FormatDate date={article.published_at} />}
+        <span className="text-[#696A75]">
+          {moment(article.published_at, "YYYYMMDD").format("LL")}
+        </span>
       </div>
     </div>
   );
