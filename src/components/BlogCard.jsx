@@ -32,7 +32,9 @@ export const BlogCard = ({ article, showUser }) => {
             <BlogCardTag text={article.tag_list[0]} />
           </div>
           <h1 className="font-semibold text-2xl text-[#181A2A]">
-            {article.title}
+            {article.title.length > 50
+              ? article.title.slice(0, 49).concat("...")
+              : article.title}
           </h1>
         </div>
         <div className="flex gap-5 items-center">

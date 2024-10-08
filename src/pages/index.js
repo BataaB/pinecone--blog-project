@@ -112,9 +112,9 @@ const Home = () => {
               </button>
             </div>
           </div>
-          <div className="flex flex-col gap-8 ">
+          <div className="flex flex-col w-[1280px] gap-8 ">
             <h1 className="font-bold text-2xl text-[#181A2A]">Trending</h1>
-            <div className="flex gap-5">
+            <div className="flex justify-between">
               {trendingArticles.map((article, i) => {
                 return <TrendingCard article={article} key={i} />;
               })}
